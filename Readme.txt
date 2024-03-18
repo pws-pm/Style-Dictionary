@@ -1,4 +1,4 @@
-In figma export the JSON with Design Tokens plugin:
+In Figma export the JSON with Design Tokens plugin:
     https://www.figma.com/community/plugin/888356646278934516/design-tokens
     When exporting to file exlcude:
         Typography (as it is redundant in font styles)
@@ -9,3 +9,11 @@ Navigate in the project folder and install style dictionary locally
 
 Launch style dictionary locally
     npx style-dictionary build
+
+
+In Fimga export the SVG with Frame Exporter Plugin:
+    https://www.figma.com/community/plugin/1074101625913782131/frame-exporter
+    File name: $F-$V
+    Case: Kebab
+    Join variants: -
+    File type: SVG
