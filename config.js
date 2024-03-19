@@ -52,6 +52,20 @@ StyleDictionary.registerFormat({
   }
 });
 
+StyleDictionary.registerFormat({
+  name: 'scss/colorVariablesExcludingColorbase',
+  formatter: function(dictionary, config) {
+      let output = `\n// Do not edit directly\n// Generated on ${new Date().toUTCString()}\n\n`;
+      dictionary.allProperties.forEach(token => {
+          if (token.attributes.category === 'color' && !token.name.startsWith('colorbase')) {
+              output += `$${token.name}: ${token.value};\n`;
+          }
+      });
+      return output;
+  }
+});
+
+
 
 // Main Configuration for Style Dictionary
 module.exports = {
@@ -63,14 +77,21 @@ module.exports = {
       files: [
         {
             destination: "_colors.scss",
+            format: "scss/colorVariablesExcludingColorbase",
+            options: {
+              outputReferences: false, // resolve aliases
+            }
+        },
+        /*{
+            destination: "_colors.scss",
             format: "scss/variables",
             filter: {
               type: "color"
               },
             options: {
-              outputReferences: true,
+              outputReferences: false,
             }
-        },
+        },*/
         {
             destination: "_typography.scss",
             format: "scss/customTypographyMixin", // custom format
